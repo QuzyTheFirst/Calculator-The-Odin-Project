@@ -12,5 +12,7 @@ const buttonPlus = document.querySelector("button-plus");
 const buttonMinus = document.querySelector("button-minus");
 const buttonMultiply = document.querySelector("button-multiply");
 const buttonDivide = document.querySelector("button-divide");
+const buttonPoint = document.querySelector("button-point");
+const buttonSolve = document.querySelector("button-solve ");
 const buttonClear = document.querySelector("button-clear");
 const buttonBack = document.querySelector("button-back");

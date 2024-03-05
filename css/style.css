@@ -36,7 +36,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    align-items: center;
+    align-content: space-around;
 }
 
 .number-buttons,
@@ -45,9 +45,7 @@
     flex-wrap: wrap;
     gap:12px;
 
-    height: 300px;
-
-    align-content:space-between;
+    align-content:space-evenly;
     justify-content: center;
 }
 
