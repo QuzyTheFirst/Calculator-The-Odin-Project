@@ -23,7 +23,7 @@ let methods = {
     "%": (a, b) => a % b,
 };
 
-function calculate(operandA, operator, operandB) {
+function Calculate(operandA, operator, operandB) {
     operandA = +operandA;
     operandB = +operandB;
 
@@ -40,69 +40,21 @@ function calculate(operandA, operator, operandB) {
     return result % 1 !== 0 ? result.toFixed(2) : result;
 }
 
-function clear(){
+function Clear(){
     operandA = "0";
     operator = "";
     operandB = "";
     expressionField.value = `${operandA} ${operator} ${operandB}`;
 }
 
-// Numbers
-for(let button of buttonNumbers){
-    button.addEventListener('click', ()=>{
-        if(operator === ""){
-            if(isNaN(operandA)){
-                return;
-            }
-
-            if(calculated){
-                clear();
-                calculated = false;
-            }
-
-            if(operandA === "0" && button.value === "0")
-                return;
-            else if (operandA === "0" && button.value !== "0")
-                operandA = "";
-
-            operandA += button.value;
-        } else {
-            operandB += button.value;
-        }
-        expressionField.value = `${operandA} ${operator} ${operandB}`;
-    });
-}
-
-// Operators
-for(let button of buttonsOperators){
-    button.addEventListener('click', () => {
-        if(isNaN(operandA)){
-            return;
-        }
-
-        if(calculated){
-            calculated = false;
-        }
-
-        if(operator !== "" && operandB !== ""){
-            operandA = calculate(operandA, operator, operandB);
-            operandB = "";
-        }
-
-        operator = button.value;
-        expressionField.value = `${operandA} ${operator} ${operandB}`;
-    });
-}
-
-// Special
-buttonDot.addEventListener('click', () => {
+function AddDot(){
     if(operator === ""){
         if(isNaN(operandA)){
             return;
         }
 
         if(calculated){
-            clear();
+            Clear();
             calculated = false;
         }
 
@@ -113,27 +65,64 @@ buttonDot.addEventListener('click', () => {
             operandB += ".";
     }
     expressionField.value = `${operandA} ${operator} ${operandB}`;
-});
+}
 
-buttonSolve.addEventListener('click', () => {
-    operandA = calculate(operandA, operator, operandB).toString();
-    operator = "";
-    operandB = "";
-    expressionField.value = `${operandA} ${operator} ${operandB}`;
-});
-
-buttonClear.addEventListener('click', () => {
-    clear();
-});
-
-buttonBack.addEventListener('click', () => {
+function AddNumber(num){
     if(operator === ""){
         if(isNaN(operandA)){
             return;
         }
 
         if(calculated){
-            clear();
+            Clear();
+            calculated = false;
+        }
+
+        if(operandA === "0" && num === 0)
+            return;
+        else if (operandA === "0" && num !== 0)
+            operandA = "";
+
+        operandA += num;
+    } else {
+        operandB += num;
+    }
+    expressionField.value = `${operandA} ${operator} ${operandB}`;
+}
+
+function SetOperator(oper){
+    if(isNaN(operandA)){
+        return;
+    }
+
+    if(calculated){
+        calculated = false;
+    }
+
+    if(operator !== "" && operandB !== ""){
+        operandA = Calculate(operandA, operator, operandB);
+        operandB = "";
+    }
+
+    operator = oper;
+    expressionField.value = `${operandA} ${operator} ${operandB}`;
+}
+
+function SolveEquation(){
+    operandA = Calculate(operandA, operator, operandB).toString();
+    operator = "";
+    operandB = "";
+    expressionField.value = `${operandA} ${operator} ${operandB}`;
+}
+
+function Backspace(){
+    if(operator === ""){
+        if(isNaN(operandA)){
+            return;
+        }
+
+        if(calculated){
+            Clear();
             calculated = false;
         }
 
@@ -150,4 +139,35 @@ buttonBack.addEventListener('click', () => {
             operandB = operandB.slice(0, -1);
     }
     expressionField.value = `${operandA} ${operator} ${operandB}`;
+}
+
+// UI Numbers
+for(let button of buttonNumbers){
+    button.addEventListener('click', ()=>{
+        AddNumber(+button.value);
+    });
+}
+
+// UI Operators
+for(let button of buttonsOperators){
+    button.addEventListener('click', () => {
+        SetOperator(button.value);
+    });
+}
+
+// Special
+buttonDot.addEventListener('click', () => {
+    AddDot();
+});
+
+buttonSolve.addEventListener('click', () => {
+    SolveEquation();
+});
+
+buttonClear.addEventListener('click', () => {
+    Clear();
+});
+
+buttonBack.addEventListener('click', () => {
+    Backspace();
 });
