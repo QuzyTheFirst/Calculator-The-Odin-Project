@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculator</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./images/calculator-icon.jpg" type="image/x-icon"/>
     <script src="./js/main.js" defer></script>
 </head>
+
 <body>
     <div class="container">
         <div class="upper-part">
@@ -14,27 +17,35 @@
         </div>
         <div class="bottom-part">
             <div class="number-buttons">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
+                <div class="number-buttons-top">
+                    <button class="button-one" value="1">1</button>
+                    <button class="button-two" value="2">2</button>
+                    <button class="button-three" value="3">3</button>
+                    <button class="button-four" value="4">4</button>
+                    <button class="button-five" value="5">5</button>
+                    <button class="button-six" value="6">6</button>
+                    <button class="button-seven" value="7">7</button>
+                    <button class="button-eight" value="8">8</button>
+                    <button class="button-nine" value="9">9</button>
+                </div>
+                <div class="number-buttons-bottom">
+                    <button class="button-zero" value="0">0</button>
+                </div>
             </div>
             <div class="operator-buttons">
-                <button>+</button>
-                <button>-</button>
-                <button>*</button>
-                <button>/</button>
-                <button>.</button>
-                <button>=</button>
-                <button>C</button>
-                <button>Back</button>
+                <button class="button-plus" value="+">+</button>
+                <button class="button-minus" value="-">-</button>
+                <button class="button-multiply" value="*">*</button>
+                <button class="button-divide" value="/">/</button>
+            </div>
+            <div class="special-buttons">
+                <button class="button-dot" value=".">.</button>
+                <button class="button-solve" value="=">=</button>
+                <button class="button-clear" value="clear">Clear</button>
+                <button class="button-backspace" value="back">Back</button>
             </div>
         </div>
     </div>
 </body>
+
 </html>
