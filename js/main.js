@@ -27,7 +27,10 @@ function Calculate(operandA, operator, operandB) {
     operandA = +operandA;
     operandB = +operandB;
 
+    
     if (!methods[operator] || isNaN(operandA) || isNaN(operandB)) {
+        if(!isNaN(operandA))
+            return operandA;
         return NaN;
     }
     
@@ -155,7 +158,7 @@ for(let button of buttonsOperators){
     });
 }
 
-// Special
+// UI Special
 buttonDot.addEventListener('click', () => {
     AddDot();
 });
@@ -170,4 +173,36 @@ buttonClear.addEventListener('click', () => {
 
 buttonBack.addEventListener('click', () => {
     Backspace();
+});
+
+// Keyboard
+document.addEventListener('keydown', (event) =>{
+    if(event.key >= "0" && event.key <= "9"){
+        AddNumber(+event.key);
+    }
+
+    if(
+        event.key === "+" ||
+        event.key === "-" ||
+        event.key === "/" ||
+        event.key === "*"
+        ){
+            SetOperator(event.key);
+        }
+
+    if(event.key === "Enter"){
+        SolveEquation();
+    }
+
+    if(event.key === "."){
+        AddDot();
+    }
+
+    if(event.key === "Backspace"){
+        Backspace();
+    }
+
+    if(event.key === "Escape"){
+        Clear();
+    }
 });
