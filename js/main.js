@@ -190,7 +190,7 @@ document.addEventListener('keydown', (event) =>{
             SetOperator(event.key);
         }
 
-    if(event.key === "Enter"){
+    if(event.key === "Shift"){
         SolveEquation();
     }
 
